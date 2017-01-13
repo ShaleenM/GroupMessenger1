@@ -45,7 +45,7 @@ public class OnSendClickListner implements OnClickListener
         String msg = edit_Text.getText().toString() + "\n";
         Log.e(TAG, "in OnClick with message :: " + msg);
         edit_Text.setText(""); // This is one way to reset the input box.
-        text_view.append(msg);// This is one way to display a string.
+//        text_view.append(msg);// This is one way to display a string.
 
         Log.e(TAG, "Calling Client Task ");
         new ClientTask().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, msg, myPort);
@@ -73,10 +73,7 @@ public class OnSendClickListner implements OnClickListener
                     PrintWriter write = new PrintWriter(out);
                     Log.e(TAG, "In client :: writing message to socket ::   "+ msgToSend);
                     write.print(msgToSend);
-//                    write.close();
-//                    socket.close();
                     out.flush();
-//                    out.close();
                 }
             } catch (UnknownHostException e) {
                 Log.e(TAG, "ClientTask UnknownHostException");

@@ -31,6 +31,7 @@ public class GroupMessengerActivity extends Activity {
     static final String TAG = GroupMessengerActivity.class.getSimpleName();
     static final int SERVER_PORT = 10000;
     public int count = 0;
+    TextView tv;
 
 
     @Override
@@ -53,7 +54,7 @@ public class GroupMessengerActivity extends Activity {
 
 
 
-        TextView tv = (TextView) findViewById(R.id.textView1);
+        tv = (TextView) findViewById(R.id.textView1);
         tv.setMovementMethod(new ScrollingMovementMethod());
 
         findViewById(R.id.button1).setOnClickListener(
@@ -88,7 +89,7 @@ public class GroupMessengerActivity extends Activity {
 
     private class ServerTask extends AsyncTask<ServerSocket, String, Void> {
 
-        final TextView text_view = (TextView) findViewById(R.id.textView1);
+//        final TextView text_view = (TextView) findViewById(R.id.textView1);
         @Override
         protected Void doInBackground(ServerSocket... sockets) {
             Log.e(TAG, "Socket  :: " + sockets[0]);
@@ -134,6 +135,7 @@ public class GroupMessengerActivity extends Activity {
             values.put("key", key);
             values.put("value", msg);
             try {
+                tv.append(msg+"\n");
                 getContentResolver().insert(uri, values);
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
@@ -141,7 +143,7 @@ public class GroupMessengerActivity extends Activity {
             count++;
 
             //Writing to screen
-            text_view.append(msg);
+//            tv.append(msg);
             return;
         }
     }
